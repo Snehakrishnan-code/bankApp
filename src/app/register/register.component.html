@@ -1,0 +1,18 @@
+<div class="container w-50 border mt-5 p-5"
+    style="border-radius:20px; background:rgba(25, 101, 86, 0.5)">    
+    <h1 class="text-center mt-2 text-dark">Registration form</h1>
+    <form (ngSubmit)="register()">
+        
+        <label class="text-dark mt-2 p-2" for="user">Enter Username</label>
+        <input id="user" name="uname" [(ngModel)]="uname" type="text" [placeholder]="d1" class="form-control p-2 bg-light border border-dark" >
+
+        <label class="text-dark mt-2 p-2" for="acn">Enter Account number</label>
+        <input id="acn" name="acno" [(ngModel)]="acno" type="text" [placeholder]="d2" class="form-control p-2 bg-light border border-dark" >
+
+        <label class="text-dark mt-2 p-2" for="pwd">Enter Password</label>
+        <input type="password" name="psw" [(ngModel)]="psw" [placeholder]="d3" class="form-control p-2 bg-light border border-dark" id="pwd">
+        
+        <div class="mt-2 p-2 text-center"><button type="submit" class="btn btn-light text-dark border border-dark" >Signup</button></div>
+       
+    </form> 
+</div>

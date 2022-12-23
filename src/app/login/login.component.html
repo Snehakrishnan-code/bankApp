@@ -1,29 +1,38 @@
-<br><div>
+<br>
+<div>
     <h1 class="text-center" style="color: rgb(0, 118, 0);">{{aim}}</h1>
 </div>
 
-    <!-- login form - accon no., passwrd and login button -->
+<!-- login form - accon no., passwrd and login button -->
 
-    <div style="border-radius:20px;" class="container w-25 transbox border border-dark text-dark mt-3 p-5">
-        <h1 class="text-center mt-2">User Login</h1>
-        <form action="">
-            <label style="font-size: 20px;" class="text-dark mt-2 p-2" for="acn">Enter Account number</label>
-            <!-- <input name="acno" id="acid" (change)="acnoChange($event)" type="text" [placeholder]="data1" class="form-control p-2"> -->
-            <input name="acno" id="acid" #acno type="text" [placeholder]="data1" class="form-control p-2">
+<div class="container w-50 border mt-3 p-5"
+    style="border-radius:20px; background:rgba(25, 101, 86, 0.5)">
+    <h1 class="text-center mt-2">User Login</h1>
+    <form (ngSubmit)="login()">
+        <label style="font-size: 20px;" class="text-dark mt-2 p-2" for="acn">Enter Account number</label>
+        <!-- <input name="acno" id="acid" (change)="acnoChange($event)" type="text" [placeholder]="data1" class="form-control p-2"> -->
 
-
-            <label style="font-size: 20px;" class="text-dark mt-2 p-2" for="pwd">Enter Password</label>
-            <!-- <input name="psw" itemid="pwd" (change)="pswChange($event)" type="password" [placeholder]="data2" class="form-control p-2" id="pid"> -->
-            <input name="psw" itemid="pwd" #psw type="password" [placeholder]="data2" class="form-control p-2" id="pid">
-            <!-- in the above case the input value shall be saved into the variabl and the value can be passed to the login() method directly -->
+        <!-- <input name="acno" id="acid" #acno type="text" [placeholder]="data1" class="form-control p-2"> -->
+        <input name="acno" id="acid" [(ngModel)]="acno" type="text" [placeholder]="data1" class="form-control p-2">
 
 
-            <div class="mt-2 p-2 text-center"><button type="submit" (click)="login(acno,psw)" style="font-size: 20px;"  class="btn btn-light text-dark border border-dark"
-                    type="button">Login</button></div>
 
-            <div class="mt-2 p-2 text-center text-dark">
-                <a href="register.html">New User? Register Here</a>
-            </div>
 
-        </form>
-    </div>
+        <label style="font-size: 20px;" class="text-dark mt-2 p-2" for="pwd">Enter Password</label>
+        <!-- <input name="psw" itemid="pwd" (change)="pswChange($event)" type="password" [placeholder]="data2" class="form-control p-2" id="pid"> -->
+
+        <!-- <input name="psw" itemid="pwd" #psw type="password" [placeholder]="data2" class="form-control p-2" id="pid"> -->
+        <!-- in the above case the input value shall be saved into the variabl and the value can be passed to the login() method directly -->
+        <input name="acno" id="acid" [(ngModel)]="psw" type="password" [placeholder]="data2" class="form-control p-2">
+
+
+
+
+        <div class="mt-2 p-2 text-center"><button type="submit" style="font-size: 20px;" class="btn btn-light text-dark border border-dark" >Login</button></div>
+
+        <div class="mt-2 p-2 text-center text-dark">
+            <p class="text-white">New User?<a routerLink="register">Register Here</a></p>
+        </div>
+
+    </form>
+</div>
