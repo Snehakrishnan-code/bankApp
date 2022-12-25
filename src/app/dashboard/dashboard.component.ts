@@ -17,7 +17,12 @@ export class DashboardComponent {
   psw1 = ''
   amnt1 = ''
 
-  constructor(private ds: DataService) { }
+  user='' //to store dependancy injected data (username to be displayed in the dahsboard)
+
+  constructor(private ds: DataService) {
+    
+    this.user=this.ds.currentuser //access username 
+   }
 
   deposit() {
 

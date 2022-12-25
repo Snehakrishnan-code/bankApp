@@ -1,0 +1,133 @@
+=> bootstrap link, fond awesome links are all given in index.html
+=> common background given in style.css
+=> create a login component and code the login page
+
+Components are the most basic UI building block of an Angular app. 
+An Angular app contains a tree of Angular components. 
+Angular components are a subset of directives, always associated with a template. 
+
+
+call only root component inside the index file
+call login component in appcomponent.html page
+bootstrap and other links should be pasted inside index.html head section.
+give common styles inside style.css
+copy-paste pictures/images inside assets file.
+unlike javascript, data is not accessed using dom methods... rather data binding techniques are used
+
+
+data binding techniques in angular
+----------------------------------
+ts- component
+html- view
+----------------------
+The data transfer would be between html and ts - 
+
+1. One way Binding (data share would be either from component to view or view to component)
+
+    1.1) Component to view 
+
+        1.1.1) string interpolation {{}} - 
+        1.1.2) property binding      [property]="value"
+
+    1.2) view to component 
+
+        1.2.1) event binding      (eventname)="method name()"
+        1.2.2) event binding using $event     (eventname)="methodname($argurment)"
+        1.2.3) event binding using tempelate rendering variable   #variable
+
+2. Two way binding method
+    2.1) ngmodel           [(ngmodel)]="value"
+                            in-build method in FormsModule package (formsmodule is to be imported in app.module.ts)
+
+
+
+to create homepage (redirected from login page) - we will create a new component - dashbord
+redirection path is set inside - app.routing.module.ts - inside routes section - set the path as ojects 
+note - landing page path should be empty string
+also, inside app.component.html (route component) give a common selector - <router-outlet></router-outlet> for routing to happen (otherwise only login will appear on routing)
+
+
+
+Redirection in angular (Angular Routing concept)
+-----------------------
+navigateByUrl - method used to redirection
+router - class (inside this class you have navigateByUrl) inside AppRoutingModule (already imported in app.module.ts)
+
+navigateByUrl                  - method used to redirection (for method in one class)
+Router                         - class
+AppRoutingModule               - module
+
+
+Dependency Injection 
+---------------------
+- to use a method of one class in another class
+- in constructor
+- call class name inside constructor (router) with variable name and also provide access pecifier (public/private)
+steps
+-----
+- access pecifier (normally we specify private -accessible to files and folders within the main forlder)
+- variable
+- class name
+            private variable:Classname
+
+
+
+for registration (after login)
+-----------------------------
+- set path in app.routing.module
+- give routerLink method in login.html (instead of href) - to redirect directly to any other component
+
+Note- register() method called in html file of register component, it must be there in the ts file of the same component
+
+to access a data - like database in login() component we need them in register,withdraw, etc - we can use the technology - angular services
+Angular Services - 
+-----------------
+- redundant (to be accessed repetedly)data will be given in angular services
+- like database and related data will be given in angular services
+- also, many API request need to be send, which we can save in a common location - angular services
+- creating a service - no folder will be created..we will have to create one folder.. also only 2 files (ts and spec.ts) will be created
+- ng g s data
+- the function inside services should be with arguement and return type - must
+note: errors -> red undeline - errors , yellow line- warning
+- then, the created function in service can be called in any component using dependancy injection
+
+
+to display user name on dashboard after login success
+---------------------------------------------
+- save the user details after login - to a string currentuser
+- as constructor method works first in every method, we will access the username in constructor to display it first
+- access data using dependancy injection in the ts file of dahsboard
+- this accessed data is to be taken to dashboard.html   (component to view- string interpolation)
+
+for transaction history section 
+-------------------------------
+- design a box in dashboard html
+- give a <a> tag
+- create a new component called 'transaction'
+- add a path in app.routing.module
+- give the path name in <a> tag - in routerLink 
+- path name should be given with forward slash - as the path is directed inside the dashboard, 
+it should go back once, from local4200 it will be going to transaction section
+- now it will be redirected to transaction
+- go to transaction folder and create table in html
+- in the database section, give an array called transaction for every user and new registered user also
+
+- transactions in deposite and withdrawal can be saved as object form using push operation
+i.e.     userDetails[acno]['transaction'].push({type:'CREDIT',amount:amnt})
+        userDetails[acno]['transaction'].push({type:'DEBIT',amount:amnt})
+
+- then create new method in dataservices to return these transactions
+- call this function in transaction.ts file in constructor as otherwise there are no buttons or click option to redirect. 
+moreover, this content has to appear first
+- get login success acno (from login function)and access this acno in transaction.ts
+- now get this data in html using angular dierectives
+
+Angular dierectives-
+------------------------
+
+1. structural directives - to handle structured data in view of a component   
+        - ngFor   - can directly applied in html to access elements from array (this is basically a for loop of these structural data(object or array))
+                       <tr *ngFor="let i of transaction">
+                            <td class="border border-white">{{i.type}}</td>
+                            <td class="border border-white">{{i.amount}}</td>
+                        </tr>

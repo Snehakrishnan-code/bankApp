@@ -1,38 +1,54 @@
-<br><div class="container w-50 border mt-5 p-5"
-    style="border-radius:20px; background:rgba(82, 124, 148, 0.5)">    
+<br>
+<h1 class="text-center ms-3 p-4" style="color: rgb(0, 118, 0);">Welcome {{user}}</h1>
+<!-- string interpolation - data accessed to dashboard -->
+
+<div>
+    <a routerLink="/transaction" style="border-radius:20px; background:rgba(82, 124, 148, 0.5); text-decoration: none; color: aliceblue;" class="p-4 ms-3 border border-white" >View
+        transaction history</a>
+</div>
+
+
+
+<br>
+<div class="container w-50 border mt-5 p-5" style="border-radius:20px; background:rgba(82, 124, 148, 0.5)">
     <h1 class="text-center mt-2 text-white">Deposit form</h1>
     <form (ngSubmit)="deposit()">
-        
+
         <label class="text-dark mt-2 p-2" for="acid">Enter Account Number</label>
-        <input id="acid" name="acno" [(ngModel)]="acno" type="text" placeholder="Account number" class="form-control p-2 bg-light border border-dark" >
+        <input id="acid" name="acno" [(ngModel)]="acno" type="text" placeholder="Account number"
+            class="form-control p-2 bg-light border border-dark">
 
         <label class="text-dark mt-2 p-2" for="pid">Enter Password</label>
-        <input id="pid" name="psw" [(ngModel)]="psw" type="password" placeholder="Password" class="form-control p-2 bg-light border border-dark" >
+        <input id="pid" name="psw" [(ngModel)]="psw" type="password" placeholder="Password"
+            class="form-control p-2 bg-light border border-dark">
 
         <label class="text-dark mt-2 p-2" for="uid">Enter Amount</label>
-        <input id="aid" name="amount" [(ngModel)]="amnt" type="text" placeholder="Amount" class="form-control p-2 bg-light border border-dark" >
-        
+        <input id="aid" name="amount" [(ngModel)]="amnt" type="text" placeholder="Amount"
+            class="form-control p-2 bg-light border border-dark">
+
         <div class="mt-2 p-2 text-center"><button type="submit" class="btn btn-outline-info">Deposit</button></div>
-       
+
     </form>
 </div><br><br>
 
 
-<div class="container w-50 border mt-3 p-5"
-    style="border-radius:20px; background:rgba(82, 124, 148, 0.5)">    
+<div class="container w-50 border mt-3 p-5" style="border-radius:20px; background:rgba(82, 124, 148, 0.5)">
     <h1 class="text-center mt-2 text-white">Withdrawal form</h1>
     <form (ngSubmit)="withdraw()">
-        
+
         <label class="text-dark mt-2 p-2" for="acid">Enter Account Number</label>
-        <input id="acid1" name="acno1" [(ngModel)]="acno1" type="text" placeholder="Account number" class="form-control p-2 bg-light border border-dark" >
+        <input id="acid1" name="acno1" [(ngModel)]="acno1" type="text" placeholder="Account number"
+            class="form-control p-2 bg-light border border-dark">
 
         <label class="text-dark mt-2 p-2" for="pid">Enter Password</label>
-        <input id="pid1" name="psw1" [(ngModel)]="psw1" type="password" placeholder="Password" class="form-control p-2 bg-light border border-dark" >
+        <input id="pid1" name="psw1" [(ngModel)]="psw1" type="password" placeholder="Password"
+            class="form-control p-2 bg-light border border-dark">
 
         <label class="text-dark mt-2 p-2" for="uid">Enter Amount</label>
-        <input id="aid1" name="amount1"  [(ngModel)]="amnt1"  type="text"  placeholder="Amount" class="form-control p-2 bg-light border border-dark">
-        
+        <input id="aid1" name="amount1" [(ngModel)]="amnt1" type="text" placeholder="Amount"
+            class="form-control p-2 bg-light border border-dark">
+
         <div class="mt-2 p-2 text-center"><button type="submit" class="btn btn-outline-info">Withdraw</button></div>
-       
+
     </form>
 </div><br><br>
