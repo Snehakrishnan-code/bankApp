@@ -131,3 +131,67 @@ Angular dierectives-
                             <td class="border border-white">{{i.type}}</td>
                             <td class="border border-white">{{i.amount}}</td>
                         </tr>
+
+
+        - *ngIf   - used for if (i.e. condition checking)
+
+Form validation in angular 
+--------------------------
+we create the form in 2 different ways -
+
+1.) Template driven form
+
+2.) Model driven form
+    - reactive forms method
+    -------------------------
+    - we need ReactiveFormsModule - Module used to create reactive model form
+    - FormBuilder - class (to get this class, we are importing ReactiveFormsModule)
+             - Group, array, control (three things that will be present on creating a model form)
+
+    Steps - 
+    ------
+    1.) dependancy injection in ts file and create an object of formbuilder class
+    2.) create group, array in ts file
+    3.) create control in html page by linking the model created in ts file  using [formGroup]="modelname"
+
+
+    
+
+    Validate Model Form
+      -------------------
+
+      Validator - a class in angular it includes methods for applying validation 
+                - already inbuilt class in angular
+                - hence, no module importing and no dependancy injection
+    
+    try- type validator class in angular - mostly used - required and pattern
+
+    required - it is applying to strictly make a rule that data should be there
+    pattern - using regular expression rule
+
+      -access errors in validator rule  (applying in the model created)
+      eg. uname:['',Validators.required,Validators.pattern('[a-zA-Z]+')]    
+      where, ^a-z means - execpt a-z.... and limit -  '+' is the limit 1 to n.... if '*' - it is the limit from 0 to n....... {5} - exactly 5 alphabets will be accepted....{5,10}
+
+
+to check if register form is valid - 
+if(this.registerForm.valid){
+    then the code has to be executed
+}
+
+
+             this.registerForm.get('uname')?.errors       - to access the data that comes in uname (either valid or invalid)
+
+                            - valid   - empty response
+
+                            - invalid - content    (this is checked and displayed in html file)
+
+
+
+            we simply have to check if there is a content in the errors o/p  to check if invalid    
+            if(this.registerForm.get('uname')?.error){    //*ngIf
+
+            }
+
+local storage in angular
+-------------------------
