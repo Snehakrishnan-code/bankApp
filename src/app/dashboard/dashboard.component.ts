@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { DataService } from 'services/data.service';
 
 @Component({
@@ -18,10 +19,14 @@ export class DashboardComponent {
   // psw1 = ''
   // amnt1 = ''
 
+  dateandtime:any
+  acno:any
   user='' //to store dependancy injected data (username to be displayed in the dahsboard)
 
-  constructor(private ds: DataService, private fb:FormBuilder) {
+  constructor(private ds: DataService, private fb:FormBuilder, private router: Router) {
     
+    this.dateandtime=new Date()
+
     this.user=this.ds.currentuser //access username 
    }
 
@@ -32,6 +37,16 @@ export class DashboardComponent {
    withdrawForm=this.fb.group({acno1:['',[Validators.required, Validators.pattern('[0-9]+')]],
    psw1:['',[Validators.required, Validators.pattern('[0-9a-zA-Z]+')]],
    amnt1:['',[Validators.required, Validators.pattern('[0-9]+')]]})
+
+
+   ngOnInit(): void{
+    if(!localStorage.getItem('currentacno')){  // this section will prevent going back to dashboard when logout is clicked
+      alert('please login first')
+      this.router.navigateByUrl('')
+    }
+   }
+
+
 
   deposit() {
 
@@ -72,4 +87,17 @@ export class DashboardComponent {
     alert('invalid form')
   }
   }
+
+  logout(){
+  localStorage.removeItem('currentuser')
+  localStorage.removeItem('currentacno')
+  this.router.navigateByUrl('')
+  }
+
+
+  deleteconfirm(){
+    this.acno=JSON.parse(localStorage.getItem('currentacno') || "") //access the data from localstorage
+  }
 }
+
+

@@ -1,3 +1,6 @@
+Angular was introduced to create Single Page applications. 
+
+
 => bootstrap link, fond awesome links are all given in index.html
 => common background given in style.css
 => create a login component and code the login page
@@ -124,8 +127,9 @@ moreover, this content has to appear first
 
 Angular dierectives-
 ------------------------
+we use angular directives to change the structure of DOM and manage DOM
 
-1. structural directives - to handle structured data in view of a component   
+1.) Structural directives - to handle structured data in view of a component   
         - ngFor   - can directly applied in html to access elements from array (this is basically a for loop of these structural data(object or array))
                        <tr *ngFor="let i of transaction">
                             <td class="border border-white">{{i.type}}</td>
@@ -134,6 +138,14 @@ Angular dierectives-
 
 
         - *ngIf   - used for if (i.e. condition checking)
+
+2.) Component directives
+
+3.) Attribute directives - to make changes to certain part of DOM only on certain conditions
+
+[ngClass]
+
+
 
 Form validation in angular 
 --------------------------
@@ -195,3 +207,38 @@ if(this.registerForm.valid){
 
 local storage in angular
 -------------------------
+- store       localStorage.setItem()
+- access      localStorage.getItem()
+- delete      localStorage.removeItem()
+
+to store the data - we have created a method - saveDetails() in dataservices.ts - this method will be called whenever we have to save any item in the localStorage
+
+- once this getdetails and savedetails is done .. you dont need the database definition (userDetails variable)
+
+
+Parent child component communication in angular
+-----------------------------------------------
+- create child component
+- call the selector of child component in the html of parent component
+- create an event (function) in parent html.. which will on clicking open the child box
+- define the function in the ts file of parent (access data from localstorage)
+- via selector of child (in parent), we can share the data using a property in selector section
+- in the ts file of selector , we have to define the property
+// data transfer is done
+- now, apply ngif (if data is present i.e. item has content) - content has to be displayed
+
+
+date in angular
+---------------
+Date - class
+to access date - just create an object - we will get the present date and time
+- formate can be changed using angular pipe
+
+
+create your own events
+-----------------------
+
+angular pipe
+--------------
+to convert data from one form to another
+https://angular.io/guide/pipes   - search angular pipe
