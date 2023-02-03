@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { DataService } from 'services/data.service';
+import { DataService } from '../services/data.service';
 
 @Component({
   selector: 'app-transaction',
@@ -11,12 +11,14 @@ acno:any
 transaction:any
 
   constructor(private ds:DataService){
-    this.acno=this.ds.currentacno
-   this.transaction= this.ds.gettransactions(this.acno)
-   console.log(this.transaction);
 
+    this.acno=JSON.parse(localStorage.getItem('currentAcno')||'')
 
-
-   //for (i of transaction) in html to display these data
+    this.ds.gettransactions(this.acno).subscribe((result:any)=>{
+      this.transaction=result.message
+    },
+    result=>{
+      alert(result.error.message)
+    })
   }
 }

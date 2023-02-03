@@ -18,7 +18,7 @@
     <button (click)="deleteconfirm()" class="btn btn-outline-danger" >Delete</button>
 </div>
 
-<app-deleteconfirm [item]="acno"></app-deleteconfirm>
+<app-deleteconfirm (onDelete)="delete($event)" (onCancel) ="oncancel()" [item]="acno"></app-deleteconfirm>
 
 <br>
 <div [ngClass]="acno?'style':''" class="container w-50 border mt-5 p-5" style="border-radius:20px; background:rgba(82, 124, 148, 0.5)">

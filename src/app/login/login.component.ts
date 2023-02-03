@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { DataService } from 'services/data.service';
+import { DataService } from '../services/data.service';
 
 @Component({
   selector: 'app-login',
@@ -25,13 +25,6 @@ export class LoginComponent {
     psw: ['', [Validators.required, Validators.pattern('[0-9a-zA-Z]+')]]
   })
 
-  userDetails: any = {
-    1000: { acno: 1000, username: "anu", password: 123, balance: 0 },
-    1001: { acno: 1001, username: "amal", password: 123, balance: 0 },
-    1002: { acno: 1002, username: "arun", password: 123, balance: 0 },
-    1003: { acno: 1003, username: "mega", password: 123, balance: 0 },
-  }
-
 
   login() {
     // alert('login clicked')  // just to know if this method works
@@ -40,21 +33,21 @@ export class LoginComponent {
     var psw = this.loginForm.value.psw
 
 
-    if(this.loginForm.valid){
-          const result = this.ds.login(acno, psw)
+    if (this.loginForm.valid) {
+     this.ds.login(acno, psw).subscribe((result: any) => {
+        localStorage.setItem('currentacno',JSON.stringify(result.currentacno))
+        localStorage.setItem('currentuser',JSON.stringify(result.currentuser))
+        localStorage.setItem('token',JSON.stringify(result.token))
+        alert(result.message)
+        this.router.navigateByUrl('dashboard')
+      },
+        result => {
+          alert(result.error.message)
+        })
+      }
 
-    if (result) {
-      alert('login successful')
-      this.router.navigateByUrl('dashboard')
-    }
-    else {
-      alert('incorrect username or password')
-    }
-
+  else {
+        alert("invalid form")
+      }
   }
-
-  else{
-    alert("invalid form")
-  }
-}
 }

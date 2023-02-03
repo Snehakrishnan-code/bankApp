@@ -83,6 +83,8 @@ for registration (after login)
 Note- register() method called in html file of register component, it must be there in the ts file of the same component
 
 to access a data - like database in login() component we need them in register,withdraw, etc - we can use the technology - angular services
+
+
 Angular Services - 
 -----------------
 - redundant (to be accessed repetedly)data will be given in angular services
@@ -154,7 +156,7 @@ we create the form in 2 different ways -
 1.) Template driven form
 
 2.) Model driven form
-    - reactive forms method
+    - reactive forms method`
     -------------------------
     - we need ReactiveFormsModule - Module used to create reactive model form
     - FormBuilder - class (to get this class, we are importing ReactiveFormsModule)
@@ -170,7 +172,7 @@ we create the form in 2 different ways -
     
 
     Validate Model Form
-      -------------------
+   -----------------------
 
       Validator - a class in angular it includes methods for applying validation 
                 - already inbuilt class in angular
@@ -227,6 +229,23 @@ Parent child component communication in angular
 // data transfer is done
 - now, apply ngif (if data is present i.e. item has content) - content has to be displayed
 
+@Input   -  parent to child data sharing
+
+@Output  - child to parent data sharing 
+
+datas only share via selector of component
+
+                            what we did? :
+                            dashboard - parent
+                            delete - child
+                            - NO button
+                            ------------ 
+                            - click event - cancel method has to work on clicking NO button
+                            - cancel method should be defined in ts file of child
+                            - create event onCancel using eventemitter class in child ts - this event will be shared from child to parent using output decorator
+                            - selectotr of this child is called in parent - go there and use the created event - during this event a method should work - oncancel()
+                            - define method in parent ts
+
 
 date in angular
 ---------------
@@ -235,10 +254,82 @@ to access date - just create an object - we will get the present date and time
 - formate can be changed using angular pipe
 
 
-create your own events
------------------------
+User Defined Event Creation In Angular 
+--------------------------------------
+
+ EventEmitter (from angular core)   - class used to create events
+ emit()                             - to start the event
+
 
 angular pipe
 --------------
 to convert data from one form to another
+eg-  date pipe 
 https://angular.io/guide/pipes   - search angular pipe
+
+
+Note - pushing these files to git hub .. when you clone it back, node modules will not be there, as node module is included in git ignore file... as it containes the copy of all the extra added/created third party modules
+so you have to instal npm - 
+            - open terminal
+            - type npm i
+
+
+SERVER SIDE
+-----------
+Server created using node - using express framework
+        why node technology? - server is asynchronous - can handle number of request at a time .. resolves many at a time
+        (php technology is out now - as its server is issue - asynchronous server - one request is resolved at a time - only when one is resolved, it will consider the other request)
+
+- create new folder bankserver outside the project folder 
+- open folder and create package.json file (enter npm init)
+note - we need package.json file to import extra modules - copy will be there in package.json file.. you can check if the modules are imported or not
+
+
+----------------------------------------------------------------note continues in the bankserver notes folder---------------------------------
+
+
+CLIENT SERVER INTEGRATION
+-------------------------
+
+http request Creation
+--------------------------
+
+HttpClientModule             - module (imported in appmodule.ts)        - module used to create api request in angular
+HttpClient                   - class
+
+dependancy injection in dataservices
+
+
+Asynchronous request in ts
+----------------------------------
+
+js                 -     promise                       - resolve   - then()
+                                                      -reject     - catch()
+
+ts                  - observable                        -resolve   - subscribe()
+                                                        - reject    - catch ()
+
+
+rxjs             -   library used to solve asynchronous code in ts (no need to install its inbuilt)
+(reactive extension for javascript)
+
+
+Append token in headers of http request
+-------------------------------------------
+create header 
+HttpHeaders                                         - class to create header object
+
+  gettoken(){
+   const token= JSON.parse(localStorage.getItem('token') ||'')               //token receiven from local storage
+
+   let headers=new HttpHeaders()                                             // header object created to pass token into
+
+   if(token){
+    headers.append('access-token',token)
+   }
+   return headers  
+
+  }
+
+  headers should be global overloaded - i.e. create one more header 
+  
